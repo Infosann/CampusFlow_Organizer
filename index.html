@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusFlow Organizer</title>
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <div>
+            <h1>CampusFlow</h1>
+            <p>Organiza tu vida universitaria de forma sencilla</p>
+        </div>
+        <span class="user-badge">Primer acceso</span>
+    </header>
+
+    <nav class="tabs">
+        <button class="tab active" data-section="perfil">Perfil</button>
+        <button class="tab" data-section="inicio">Inicio</button>
+        <button class="tab" data-section="tareas">Tareas</button>
+        <button class="tab" data-section="calendario">Calendario</button>
+        <button class="tab" data-section="asignaturas">Asignaturas</button>
+    </nav>
+
+    <main class="container">
+
+        <!-- PERFIL -->
+        <section id="perfil" class="section active-section">
+            <h2>Configura tu perfil</h2>
+
+            <div class="card wide-card">
+                <h3>Datos iniciales del estudiante</h3>
+                <p class="card-note">
+                    Antes de empezar, CampusFlow necesita algunos datos básicos para adaptar la organización.
+                </p>
+
+                <div class="add-task-box">
+                    <input type="text" id="studentNameInput" placeholder="Nombre del estudiante...">
+                    <input type="text" id="degreeInput" placeholder="Carrera o grado...">
+                    <input type="text" id="courseInput" placeholder="Curso...">
+                    <button id="saveProfileBtn">Guardar perfil</button>
+                </div>
+
+                <p id="profileFeedbackMessage" class="feedback-message"></p>
+            </div>
+
+           
+        </section>
+
+        <!-- INICIO -->
+        <section id="inicio" class="section">
+            <h2>Resumen de hoy</h2>
+            <p class="system-date" id="systemDateTime"></p>
+
+            <div class="dashboard-grid">
+                <article class="card">
+                    <h3>Tareas pendientes</h3>
+                    <p class="big-number" id="pendingTasksCount">0</p>
+                    <span class="card-note">Añade tareas para empezar</span>
+                </article>
+
+                <article class="card warning">
+                    <h3>Próxima entrega</h3>
+                    <p id="nextTaskTitle">No hay entregas registradas</p>
+<span class="card-note" id="nextTaskDate">Añade una tarea con fecha</span>
+                </article>
+
+                <article class="card success">
+    <h3>Carga semanal</h3>
+    <p id="weeklyLoadText">Sin datos</p>
+    <span class="card-note" id="weeklyLoadDetail">Todavía no hay planificación</span>
+</article>
+            </div>
+
+            
+            
+
+           
+        </section>
+
+        <!-- TAREAS -->
+        <section id="tareas" class="section">
+            <h2>Mis tareas</h2>
+
+           <div class="add-task-box">
+    <input type="text" id="taskInput" placeholder="Nombre de la tarea...">
+
+    <select id="subjectInput">
+        <option value="">Selecciona asignatura...</option>
+    </select>
+
+    <label class="field-label">
+        Fecha
+        <input type="date" id="dateInput">
+    </label>
+
+    <label class="field-label">
+        Hora
+        <input type="time" id="timeInput">
+    </label>
+
+    <select id="priorityInput">
+        <option value="normal">Normal</option>
+        <option value="urgent">Urgente</option>
+        <option value="easy">Rápida</option>
+    </select>
+
+    <button id="addTaskBtn">Añadir tarea</button>
+</div>
+
+            <p id="feedbackMessage" class="feedback-message"></p>
+
+            <ul id="taskList" class="task-list"></ul>
+
+            <p id="emptyTasksMessage" class="empty-message">
+                Todavía no hay tareas. Añade una tarea para empezar a organizarte.
+            </p>
+        </section>
+
+        <!-- CALENDARIO -->
+       <section id="calendario" class="section">
+    <h2>Calendario mensual</h2>
+
+    <div class="calendar-header">
+    <button id="prevMonthBtn">Mes anterior</button>
+
+    <div class="calendar-title-box">
+        <h3 id="calendarMonthTitle">Mes actual</h3>
+        <button id="todayMonthBtn" class="today-btn">Hoy</button>
+    </div>
+
+    <button id="nextMonthBtn">Mes siguiente</button>
+</div>
+
+    <div class="month-grid week-days">
+        <div>Lun</div>
+        <div>Mar</div>
+        <div>Mié</div>
+        <div>Jue</div>
+        <div>Vie</div>
+        <div>Sáb</div>
+        <div>Dom</div>
+    </div>
+
+    <div class="month-grid" id="calendarDays"></div>
+
+    <div class="card wide-card">
+        <h3>Funcionamiento</h3>
+        <p>
+            Las tareas con fecha aparecen automáticamente en el calendario mensual.
+            Se puede navegar entre meses para consultar entregas futuras.
+        </p>
+    </div>
+</section>
+
+        <!-- ASIGNATURAS -->
+        <section id="asignaturas" class="section">
+            <h2>Asignaturas</h2>
+
+            <div class="add-task-box">
+                <input type="text" id="newSubjectInput" placeholder="Nombre de la asignatura...">
+                <button id="addSubjectBtn">Añadir asignatura</button>
+            </div>
+
+            <p id="subjectFeedbackMessage" class="feedback-message"></p>
+
+            <div id="subjectsContainer" class="subjects-grid"></div>
+
+            <p id="emptySubjectsMessage" class="empty-message">
+                Todavía no hay asignaturas añadidas.
+            </p>
+        </section>
+
+    </main>
+
+    <script src="./scripts/main.js"></script>
+</body>
+</html>

@@ -22,6 +22,8 @@
         <button class="tab" data-section="tareas">Tareas</button>
         <button class="tab" data-section="calendario">Calendario</button>
         <button class="tab" data-section="asignaturas">Asignaturas</button>
+        <button class="tab future-tab" data-section="future">Future Mode</button>
+        <button class="tab" data-section="ayuda">Ayuda</button>
     </nav>
 
     <main class="container">
@@ -45,8 +47,6 @@
 
                 <p id="profileFeedbackMessage" class="feedback-message"></p>
             </div>
-
-           
         </section>
 
         <!-- INICIO -->
@@ -58,59 +58,86 @@
                 <article class="card">
                     <h3>Tareas pendientes</h3>
                     <p class="big-number" id="pendingTasksCount">0</p>
-                    <span class="card-note">Añade tareas para empezar</span>
+                    <span class="card-note">Tareas que siguen abiertas</span>
                 </article>
 
                 <article class="card warning">
                     <h3>Próxima entrega</h3>
                     <p id="nextTaskTitle">No hay entregas registradas</p>
-<span class="card-note" id="nextTaskDate">Añade una tarea con fecha</span>
+                    <span class="card-note" id="nextTaskDate">Añade una tarea con fecha</span>
                 </article>
 
                 <article class="card success">
-    <h3>Carga semanal</h3>
-    <p id="weeklyLoadText">Sin datos</p>
-    <span class="card-note" id="weeklyLoadDetail">Todavía no hay planificación</span>
-</article>
+                    <h3>Carga semanal</h3>
+                    <p id="weeklyLoadText">Sin datos</p>
+                    <span class="card-note" id="weeklyLoadDetail">Todavía no hay planificación</span>
+                </article>
             </div>
 
-            
-            
-
-           
+            <div class="card wide-card">
+                <h3>Recomendación</h3>
+                <p id="mainRecommendation">
+                    Añade tus asignaturas y tareas para que CampusFlow pueda ayudarte a organizar tu semana.
+                </p>
+            </div>
         </section>
 
         <!-- TAREAS -->
         <section id="tareas" class="section">
             <h2>Mis tareas</h2>
 
-           <div class="add-task-box">
-    <input type="text" id="taskInput" placeholder="Nombre de la tarea...">
+            <div class="add-task-box">
+                <input type="text" id="taskInput" placeholder="Nombre de la tarea...">
 
-    <select id="subjectInput">
-        <option value="">Selecciona asignatura...</option>
-    </select>
+                <select id="subjectInput">
+                    <option value="">Selecciona asignatura...</option>
+                </select>
 
-    <label class="field-label">
-        Fecha
-        <input type="date" id="dateInput">
-    </label>
+                <label class="field-label">
+                    Fecha
+                    <input type="date" id="dateInput">
+                </label>
 
-    <label class="field-label">
-        Hora
-        <input type="time" id="timeInput">
-    </label>
+                <label class="field-label">
+                    Hora
+                    <input type="time" id="timeInput">
+                </label>
 
-    <select id="priorityInput">
-        <option value="normal">Normal</option>
-        <option value="urgent">Urgente</option>
-        <option value="easy">Rápida</option>
-    </select>
+                <select id="priorityInput">
+                    <option value="low">Prioridad baja</option>
+                    <option value="medium" selected>Prioridad media</option>
+                    <option value="high">Prioridad alta</option>
+                </select>
 
-    <button id="addTaskBtn">Añadir tarea</button>
-</div>
+                <button id="addTaskBtn">Añadir tarea</button>
+            </div>
 
+            <p id="formErrorMessage" class="form-error-message"></p>
             <p id="feedbackMessage" class="feedback-message"></p>
+
+            <div class="task-tools">
+                <input type="text" id="searchTaskInput" placeholder="Buscar tarea...">
+
+                <select id="filterSubjectInput">
+                    <option value="">Todas las asignaturas</option>
+                </select>
+
+                <select id="filterPriorityInput">
+                    <option value="">Todas las prioridades</option>
+                    <option value="high">Prioridad alta</option>
+                    <option value="medium">Prioridad media</option>
+                    <option value="low">Prioridad baja</option>
+                </select>
+
+                <select id="sortTasksInput">
+                    <option value="date">Ordenar por fecha</option>
+                    <option value="priority">Ordenar por prioridad</option>
+                    <option value="subject">Ordenar por asignatura</option>
+                </select>
+
+                <button id="todayTasksBtn">Ver tareas de hoy</button>
+                <button id="clearFiltersBtn">Limpiar filtros</button>
+            </div>
 
             <ul id="taskList" class="task-list"></ul>
 
@@ -120,40 +147,40 @@
         </section>
 
         <!-- CALENDARIO -->
-       <section id="calendario" class="section">
-    <h2>Calendario mensual</h2>
+        <section id="calendario" class="section">
+            <h2>Calendario mensual</h2>
 
-    <div class="calendar-header">
-    <button id="prevMonthBtn">Mes anterior</button>
+            <div class="calendar-header">
+                <button id="prevMonthBtn">Mes anterior</button>
 
-    <div class="calendar-title-box">
-        <h3 id="calendarMonthTitle">Mes actual</h3>
-        <button id="todayMonthBtn" class="today-btn">Hoy</button>
-    </div>
+                <div class="calendar-title-box">
+                    <h3 id="calendarMonthTitle">Mes actual</h3>
+                    <button id="todayMonthBtn" class="today-btn">Hoy</button>
+                </div>
 
-    <button id="nextMonthBtn">Mes siguiente</button>
-</div>
+                <button id="nextMonthBtn">Mes siguiente</button>
+            </div>
 
-    <div class="month-grid week-days">
-        <div>Lun</div>
-        <div>Mar</div>
-        <div>Mié</div>
-        <div>Jue</div>
-        <div>Vie</div>
-        <div>Sáb</div>
-        <div>Dom</div>
-    </div>
+            <div class="month-grid week-days">
+                <div>Lun</div>
+                <div>Mar</div>
+                <div>Mié</div>
+                <div>Jue</div>
+                <div>Vie</div>
+                <div>Sáb</div>
+                <div>Dom</div>
+            </div>
 
-    <div class="month-grid" id="calendarDays"></div>
+            <div class="month-grid" id="calendarDays"></div>
 
-    <div class="card wide-card">
-        <h3>Funcionamiento</h3>
-        <p>
-            Las tareas con fecha aparecen automáticamente en el calendario mensual.
-            Se puede navegar entre meses para consultar entregas futuras.
-        </p>
-    </div>
-</section>
+            <div class="card wide-card">
+                <h3>Funcionamiento</h3>
+                <p>
+                    Las tareas con fecha aparecen automáticamente en el calendario mensual.
+                    Se puede navegar entre meses y volver al día actual con el botón “Hoy”.
+                </p>
+            </div>
+        </section>
 
         <!-- ASIGNATURAS -->
         <section id="asignaturas" class="section">
@@ -171,6 +198,155 @@
             <p id="emptySubjectsMessage" class="empty-message">
                 Todavía no hay asignaturas añadidas.
             </p>
+        </section>
+
+        <!-- FUTURE MODE -->
+        <section id="future" class="section future-section">
+            <div class="future-hero">
+                <div>
+                    <p class="future-kicker">Experimental module · CampusFlow AI</p>
+                    <h2>CampusFlow Future Mode</h2>
+                    <p>
+                        Simula el riesgo académico de tu semana y predice si deberías empezar ya
+                        con alguna tarea antes de que se acumulen las entregas.
+                    </p>
+                </div>
+
+                <div class="ai-orb">
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="future-console">
+                <div class="console-header">
+                    <span class="dot red"></span>
+                    <span class="dot amber"></span>
+                    <span class="dot green"></span>
+                    <p>academic-risk-scanner.exe</p>
+                </div>
+
+                <div class="scanner-line"></div>
+
+                <p id="futureStatus" class="future-status">
+                    Sistema en espera. Añade tareas y pulsa analizar.
+                </p>
+
+                <button id="futureBtn" class="future-button">
+                    Analizar riesgo académico
+                </button>
+            </div>
+
+            <div id="futureAlert" class="future-alert hidden">
+                <h3>⚠️ Alerta predictiva</h3>
+                <p>
+                    CampusFlow detecta riesgo de acumulación. Deberías ponerte ya con una tarea importante.
+                </p>
+            </div>
+
+            <div class="future-grid">
+                <article class="card future-card">
+                    <h3>Riesgo de saturación</h3>
+                    <p class="big-number future-risk-number" id="futureRisk">--</p>
+
+                    <div class="risk-meter">
+                        <div id="futureRiskBar" class="risk-bar"></div>
+                    </div>
+
+                    <span class="card-note" id="futureRiskText">
+                        Pulsa analizar para generar una predicción.
+                    </span>
+                </article>
+
+                <article class="card warning">
+                    <h3>Día crítico</h3>
+                    <p id="criticalDay">Sin datos</p>
+                    <span class="card-note">
+                        Día con mayor concentración de entregas.
+                    </span>
+                </article>
+
+                <article class="card success">
+                    <h3>Consejo automático</h3>
+                    <p id="futureAdvice">Aún no hay recomendación.</p>
+                    <span class="card-note">
+                        Generado por CampusFlow Future Mode.
+                    </span>
+                </article>
+            </div>
+
+            <div class="future-grid secondary-future-grid">
+                <article class="card">
+                    <h3>Tarea prioritaria</h3>
+                    <p id="futureFocusTask">Sin datos</p>
+                    <span class="card-note">
+                        Primera tarea recomendada por el sistema.
+                    </span>
+                </article>
+
+                <article class="card">
+                    <h3>Nivel de energía recomendado</h3>
+                    <p id="futureEnergy">Sin datos</p>
+                    <span class="card-note">
+                        Estimación ficticia del esfuerzo necesario.
+                    </span>
+                </article>
+
+                <article class="card">
+                    <h3>Confianza del análisis</h3>
+                    <p id="futureConfidence">--</p>
+                    <span class="card-note">
+                        Valor experimental simulado.
+                    </span>
+                </article>
+            </div>
+
+            <div class="card wide-card future-timeline-card">
+                <h3>Línea temporal predictiva</h3>
+                <div id="futureTimeline" class="future-timeline">
+                    <p class="card-note">Todavía no hay datos suficientes para crear una simulación.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AYUDA -->
+        <section id="ayuda" class="section">
+            <h2>Ayuda y guía de uso</h2>
+
+            <div class="card wide-card">
+                <h3>Primeros pasos en CampusFlow</h3>
+                <ol class="help-steps">
+                    <li><strong>Configura tu perfil:</strong> introduce tu nombre, carrera y curso.</li>
+                    <li><strong>Añade asignaturas:</strong> crea las materias que quieres organizar.</li>
+                    <li><strong>Crea tareas:</strong> asigna nombre, asignatura, fecha, hora y prioridad.</li>
+                    <li><strong>Revisa el inicio:</strong> consulta tareas pendientes, próxima entrega y carga semanal.</li>
+                    <li><strong>Usa el calendario:</strong> comprueba en qué día aparece cada entrega.</li>
+                    <li><strong>Prueba Future Mode:</strong> analiza el riesgo académico de tu semana.</li>
+                </ol>
+            </div>
+
+            <div class="card wide-card">
+                <h3>Preguntas frecuentes</h3>
+
+                <details>
+                    <summary>¿Por qué tengo que añadir primero asignaturas?</summary>
+                    <p>Porque las asignaturas se reutilizan después al crear tareas. Así no tienes que escribirlas de nuevo cada vez.</p>
+                </details>
+
+                <details>
+                    <summary>¿Por qué la fecha es obligatoria en una tarea?</summary>
+                    <p>Porque CampusFlow necesita una fecha para colocar la tarea en el calendario y calcular la carga semanal.</p>
+                </details>
+
+                <details>
+                    <summary>¿Qué significa la prioridad?</summary>
+                    <p>La prioridad baja, media o alta indica la importancia de la tarea, no su duración.</p>
+                </details>
+
+                <details>
+                    <summary>¿Qué hace Future Mode?</summary>
+                    <p>Future Mode es una función imaginaria que simula el riesgo de saturación académica según tus tareas pendientes.</p>
+                </details>
+            </div>
         </section>
 
     </main>
